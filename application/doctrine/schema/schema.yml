@@ -1,0 +1,22 @@
+Example:
+  tableName: example
+  columns:
+    id:
+      type: string(32)
+      fixed: true
+      primary: true
+    someint:
+      type: integer(10)
+      unsigned: true
+    sometime:
+      type: time(25)
+      default: '12:34:05'
+      notnull: true
+    sometext: string(12)
+    somedate: date(25)
+    sometimestamp: timestamp(25)
+    someboolean: boolean(25)
+    somedecimal: decimal(18)
+    somefloat: float(2147483647)
+    someclob: clob(2147483647)
+    someblob: blob(2147483647)

@@ -12,6 +12,9 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
+        $conn = Doctrine_Manager::connection();
+        $conn->export->createTable('test', array('name' => array('type' => 'string')));
+$conn->execute('INSERT INTO test (name) VALUES (?)', array('jwage'));
     }
 
 

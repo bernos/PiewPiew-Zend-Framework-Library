@@ -26,6 +26,7 @@ class PiewPiew_Application_Resource_Doctrine extends Zend_Application_Resource_R
 
         $loader = Zend_Loader_Autoloader::getInstance();
         $loader->pushAutoloader(array('Doctrine', 'autoload'), 'Doctrine');
+        $loader->registerNamespace('sfYaml')->pushAutoloader(array('Doctrine', 'autoload'), 'sfYaml');
 
         $manager = Doctrine_Manager::getInstance();
 
