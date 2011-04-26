@@ -21,10 +21,32 @@ $application = new Zend_Application(
     APPLICATION_PATH . '/configs/application.ini'
 );
 
-$application->getBootstrap()->bootstrap('doctrine');
-$options = $application->getBootstrap()->getOptions();
+// Default doctrine cli options for working with a standard Zend Framework
+// director structure
+$default_options = array(
+  'data_fixtures_path'  => APPLICATION_PATH . "/doctrine/fixtures",
+  'models_path'         => APPLICATION_PATH . "/models",
+  'migrations_path'     => APPLICATION_PATH . "/doctrine/migrations",
+  'sql_path'            => APPLICATION_PATH . "/doctrine/sql",
+  'yaml_schema_path'    => APPLICATION_PATH . "/doctrine/schema",
+  'generate_models_options' => array(
+    'pearStyle'             => true,
+    'generateTableClasses'  => true,
+    'classPrefix'           => 'Model_',
+    'baseClassPrefix'       => 'Base_',
+    'baseClassesDirectory'  => null,
+    'classPrefixFiles'      => false,
+    'generateAccessors'     =>false
+  )
+);
 
-$cli = new Doctrine_Cli($options['resources']['doctrine']);
+$application->getBootstrap()->bootstrap('doctrine');
+
+$custom_options = $application->getBootstrap()->getOptions();
+
+$options = $default_options + $custom_options['resources']['doctrine'];
+
+$cli = new Doctrine_Cli($options);
 
 // Load tasks from custom location
 $tasks = './Doctrine/Task';
