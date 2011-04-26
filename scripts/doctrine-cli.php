@@ -32,7 +32,7 @@ $default_options = array(
   'generate_models_options' => array(
     'pearStyle'             => true,
     'generateTableClasses'  => true,
-    'classPrefix'           => 'Model_',
+    'classPrefix'           => 'Application_Model_',
     'baseClassPrefix'       => 'Base_',
     'baseClassesDirectory'  => null,
     'classPrefixFiles'      => false,
@@ -41,6 +41,13 @@ $default_options = array(
 );
 
 $application->getBootstrap()->bootstrap('doctrine');
+
+// Need to set model autoloading to agressive, otherwise doctrine CLI wont be
+// able to find any models when attempting to create tables.
+$application->getBootstrap()->getResource('doctrine')->setAttribute(
+  Doctrine::ATTR_MODEL_LOADING,
+  Doctrine::MODEL_LOADING_AGGRESSIVE
+);
 
 $custom_options = $application->getBootstrap()->getOptions();
 

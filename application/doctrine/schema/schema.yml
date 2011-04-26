@@ -17,6 +17,5 @@ Example:
     sometimestamp: timestamp(25)
     someboolean: boolean(25)
     somedecimal: decimal(18)
-    somefloat: float(2147483647)
     someclob: clob(2147483647)
     someblob: blob(2147483647)
